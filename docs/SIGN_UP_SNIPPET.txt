@@ -1,0 +1,16 @@
+counts  db      256 dup (0)
+MostCommonChar proc
+        xor     bx, bx
+        xor     dx, dx
+scan:   lodsb
+        cmp     al, ' '
+        je      next
+        mov     bl, al
+        inc     counts[bx]
+        mov     ah, counts[bx]
+        cmp     ah, dh
+        jbe     next
+        mov     dx, ax
+next:   loop    scan
+        ret
+MostCommonChar endp
